@@ -5,7 +5,6 @@ ADXL343::ADXL343(uint8_t cs, uint32_t clk) {
     CLK = clk;
 }
 
-
 double ADXL343::getX() {
 
 }
