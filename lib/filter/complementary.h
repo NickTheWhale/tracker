@@ -1,11 +1,6 @@
 #pragma once
 #include <Arduino.h>
-
-typedef struct {
-    float x;
-    float y;
-    float z;
-} vec3_t;
+#include <Adafruit_ADXL343.h>
 
 typedef struct {
     float roll;
@@ -17,19 +12,13 @@ class Complementary {
    private:
     float alpha;
 
+    sensors_event_t prevEvt;
     orientation_t prevOrientation;
 
-    float constrainAlpha(float alpha) {
-        if (alpha < 0.0f) {
-            alpha = 0.0f;
-        } else if (alpha > 1.0f) {
-            alpha = 1.0f;
-        }
-        return alpha;
-    }
+    float constrainAlpha(float alpha);
 
    public:
     Complementary(float alpha);
     void setAlpha(float alpha);
-    void update(vec3_t *accel, vec3_t *gyro, orientation_t *orientation);
+    void update(sensors_event_t *evt, orientation_t *orientation);
 };

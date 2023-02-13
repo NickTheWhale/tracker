@@ -12,8 +12,6 @@ Adafruit_GPS gps(&Serial1);
 
 Adafruit_ADXL343 imu(IMU_CS, &SPI, 1);
 
-Complementary g_complementary(0.9);
-
 void printOrientation(orientation_t *orientation);
 
 void setup() {
@@ -26,22 +24,6 @@ void setup() {
 void loop() {
     sensors_event_t evt;
     imu.getEvent(&evt);
-
-    vec3_t accel;
-    vec3_t gyro;
-    orientation_t orientation;
-    accel.x = evt.acceleration.x;
-    accel.x = evt.acceleration.y;
-    accel.x = evt.acceleration.z;
-    gyro.x = evt.gyro.x;
-    gyro.y = evt.gyro.y;
-    gyro.z = evt.gyro.z;
-
-    g_complementary.update(&accel, &gyro, &orientation);
-
-    printOrientation(&orientation);
-
-    // delay(25);
 }
 
 void printOrientation(orientation_t *orientation) {
