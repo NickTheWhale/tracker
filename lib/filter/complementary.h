@@ -5,12 +5,13 @@
 typedef struct {
     float roll;
     float pitch;
-    uint32_t t;
 } orientation_t;
 
 class Complementary {
    private:
     float alpha;
+    float pitch;
+    float roll;
 
     sensors_event_t prevEvt;
     orientation_t prevOrientation;
