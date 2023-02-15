@@ -2,6 +2,7 @@
 #include <Adafruit_ADXL343.h>
 #include <Adafruit_GPS.h>
 #include <Adafruit_Sensor.h>
+#include <LoRa.h>
 
 // GPS
 Adafruit_GPS gps(&Serial1);
@@ -23,6 +24,8 @@ Adafruit_ADXL343 imu(IMU_CS, &SPI, 1);
 #define syncWord (0x12)
 #define TX_POWER (20)
 #define CRC (true)
+
+LoRaClass lora;
 
 // Prototypes
 void printAccel(sensors_event_t *evt);
